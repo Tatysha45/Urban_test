@@ -1,5 +1,4 @@
-def all_variants():
-    all_variants = 'abc'
+def all_variants(all_variants):
     for i in all_variants:
         yield i
     for el in range(len(all_variants)):
@@ -9,5 +8,5 @@ def all_variants():
             a = el
         yield (all_variants[a: el + 2])
 
-for substr in all_variants():
+for substr in all_variants('abc'):
     print(substr)
