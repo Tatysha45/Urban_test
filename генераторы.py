@@ -9,5 +9,5 @@ def all_variants(text):
         yield text[a: el + 2]
 
 
-for substr in all_variants('abc'):
+for substr in all_variants('abcd'):
     print(substr)
