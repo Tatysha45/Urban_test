@@ -7,29 +7,39 @@ from collections import defaultdict
 from threading import Thread
 
 class BankAccount:
-    def __init__(self, balance, deposit, withdraw, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.balance = balance
-        self.deposit_amount = deposit
-        self.withdraw_amount = withdraw
+        self.balance = 1000
         self.lock = threading.Lock()
 
-    def deposit(self):
-        for _ in range(5):
-            with self.lock:
-                self.balance += self.deposit_amount
+    def deposit(self, amount):
+        with self.lock:
+            self.balance += amount
+            print(f"Deposited {amount}, new balance is {self.balance}")
 
-    def withdraw(self):
-        for _ in range(5):
-            with self.lock:
-                if self.balance >= self.withdraw_amount:
-                    self.balance -= self.withdraw_amount
+    def withdraw(self, amount):
+        with self.lock:
+            if self.balance >= amount:
+                self.balance -= amount
+                print(f"Withdrew {amount}, new balance is {self.balance}")
+            else:
+                print("Insufficient funds")
 
 
-account = BankAccount(1000, 100, 150)
+def deposit_task(account, amount):
+    for _ in range(5):
+        account.deposit(amount)
 
-deposit = threading.Thread(target=account.deposit)
-withdraw = threading.Thread(target=account.withdraw)
+
+def withdraw_task(account, amount):
+    for _ in range(5):
+        account.withdraw(amount)
+
+
+account = BankAccount()
+
+deposit = threading.Thread(target=deposit_task, args=(account, 100))
+withdraw = threading.Thread(target=withdraw_task, args=(account, 150))
 
 deposit.start()
 withdraw.start()
@@ -37,5 +47,5 @@ withdraw.start()
 deposit.join()
 withdraw.join()
 
-print(f'Итого счет пополнен {account.deposit_amount * 5} , а снято со счета {account.withdraw_amount * 5}')
+print(f'Итого счет пополнен {account.deposit} , а снято со счета {account.withdraw}')
 print(f'Итоговый балланс: {account.balance}')
