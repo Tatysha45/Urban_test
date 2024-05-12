@@ -11,6 +11,18 @@ for post in data:
 
 # библиотека pandas
 
+# columns = ['Name', 'Quantity', 'Price']
+# data = [
+#     ['бантик', '15', '100'],
+#     ['заколка', '25', '50'],
+#     ['ремешок', '10', '150'],
+#     ['браслетик', '20', '30']
+# ]
+#
+# df = pd.DataFrame(data, columns=columns)
+#
+# df.to_csv('read_csv()', index=False)
+
 import pandas as pd
 
 df = pd.read_csv('example_pandas.csv')
