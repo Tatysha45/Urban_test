@@ -86,3 +86,5 @@ image = Image.open('myimage.jpg')
 image.thumbnail((700, 500))
 grayscale_image = image.convert('L')
 grayscale_image.save('myimage_grayscale.png')
+
+
