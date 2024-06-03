@@ -26,7 +26,6 @@ class SuperDate(datetime.datetime):
             return "Night"
 
 
-# Пример использования
 a = SuperDate(2024, 2, 22, 12)
 print(a.get_season())
 print(a.get_time_of_day())
