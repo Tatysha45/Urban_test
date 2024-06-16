@@ -1,4 +1,32 @@
+import pandas as pd
 import csv
+
+# Данные для таблицы
+data = {
+    'Name': ['Ivan', 'Sergey', 'Alexey', 'Victor', 'Natalia', 'Tatiana'],
+    'Cities Visited': [
+        ['Moscow', 'St.Petersburg', 'Luxembourg'],
+        ['St.Petersburg', 'Nizhny Novgorod', 'Pinsk'],
+        ['Moscow', 'Lyubertsy', 'Dubai'],
+        ['Rostov', 'Nizhny Novgorod', 'Yekaterinburg'],
+        ['Stavropol', 'Saratov', 'Tomsk'],
+        ['Kiev', 'Minsk', 'Vladivostok']
+    ],
+    'Wants to Visit': [
+        ['Cairo', 'Levan', 'Minsk'],
+        ['Rostov', 'Odintsovo', 'Minsk'],
+        ['Krasnodar', 'Naberezhnye Chelny', 'Kazan'],
+        ['Tokyo', 'Beijing', 'Murmansk'],
+        ['Paris', 'Kazan', 'Volgograd'],
+        ['Moscow', 'Paris', 'Arkhangelsk']
+    ]
+}
+
+# Создание DataFrame
+df = pd.DataFrame(data)
+
+# Сохранение DataFrame в CSV файл
+df.to_csv('travel_notes.csv', index=False)
 
 
 def read_travel_notes(file_path):
@@ -31,7 +59,7 @@ def write_holiday_cities(cities, first_letter):
 
 def main():
     cities_data = read_travel_notes('travel_notes.csv')
-    write_holiday_cities(cities_data, 'L')
+    write_holiday_cities(cities_data, 'S')
 
 
 if __name__ == '__main__':
