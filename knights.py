@@ -16,7 +16,7 @@ class Knight(Thread):
             time.sleep(1)
             days += 1
             self.enemies -= self.skill
-            print(f'{self.name}, сражается {days} день(дня)..., осталось {self.enemys} воинов.')
+            print(f'{self.name}, сражается {days} день(дня)..., осталось {self.enemies} воинов.')
         print(f'{self.name} одержал победу спустя {days} дней!')
 
 
