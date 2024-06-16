@@ -1,7 +1,6 @@
 import pandas as pd
 import csv
 
-# Данные для таблицы
 data = {
     'Name': ['Ivan', 'Sergey', 'Alexey', 'Victor', 'Natalia', 'Tatiana'],
     'Cities Visited': [
@@ -22,19 +21,16 @@ data = {
     ]
 }
 
-# Создание DataFrame
 df = pd.DataFrame(data)
 
-# Сохранение DataFrame в CSV файл
 df.to_csv('travel_notes.csv', index=False)
 
 
 def read_travel_notes(file_path):
-    """Чтение данных из файла travel_notes.csv."""
     cities = {}
     with open(file_path, mode='r', encoding='utf-8') as file:
         reader = csv.reader(file)
-        next(reader)  # Пропускаем заголовок
+        next(reader)
         for row in reader:
             name, visited_cities, want_to_visit = row[0], row[1].split(';'), row[2].split(';')
             cities[name] = {'visited': set(visited_cities), 'want_to_visit': set(want_to_visit)}
@@ -42,7 +38,6 @@ def read_travel_notes(file_path):
 
 
 def write_holiday_cities(cities, first_letter):
-    """Запись данных в файл holiday.csv."""
     with open('holiday.csv', mode='w', encoding='utf-8', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Посетили:', 'Хотят посетить:', 'Никогда не были в:', 'Следующим городом будет:'])
